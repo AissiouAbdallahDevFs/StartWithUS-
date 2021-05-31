@@ -2,20 +2,35 @@
 
 namespace App\Controller;
 
-use App\Form\FormAnnonceType;
+use App\Entity\Annonces;
+use App\Form\AnnonceFormType;
+use App\Repository\AnnoncesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomePageController extends AbstractController
 {
     #[Route('/', name: 'home_page')]
-    public function index(): Response
+    public function form(Request $request): Response
     {
-        $from = $this->createForm(FormAnnonceType::class);
+        $annonce = new Annonces();
+        $form = $this->createForm(AnnonceFormType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($annonce);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('annonce_index');
+        }
+
         return $this->render('home_page/index.html.twig', [
             'controller_name' => 'HomePageController',
-            'form' => $from->createView()
+            'annonce' => $annonce,
+            'form' => $form->createView(),
         ]);
     }
 }
