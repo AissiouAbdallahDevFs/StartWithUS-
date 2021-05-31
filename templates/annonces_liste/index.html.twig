@@ -19,54 +19,28 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
-
     This friendly message is coming from:
     <h1>voici les annonces</h1>
     {% for annonce in annonces %}
-    <div class="wrapper">
-        <div class="main_card">
-            <div class="card_left">
-                <div class="card_datails">
-                    <h1>{{ annonce.TypeEntreprise }}</h1>
-                    <div class="card_cat">
-                        <p class="PG">{{ annonce.prixDemander }}</p>
-                        <p class="genre">{{ annonce.numero }}</p>
-                        <p class="time">{{ annonce.Contact }}</p>
-                    </div>
-                    <p class="disc">{{ annonce.description }}</p>
-                    <a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a>
-                    <div class="social-btn">
-                        <!-- WATCH TRAILER-->
-                        <button>
-                            <i class="fas fa-play"></i> SEE TRAILER
-                        </button>
-                        <!-- GET-->
-                        <button>
-                            <i class="fas fa-download"></i> DOWNLOAD
-                        </button>
-                        <!--USERS RATINGS-->
-                        <button>
-                            <i class="fas fa-thumbs-up"></i> 97%
-                        </button>
-                        <!--BOOKMARK-->
-                        <button>
-                            <i class="fas fa-star"></i>
-                        </button>
-                    </div>
-                </div>
+    <div class="courses-container">
+        <div class="course">
+            <div class="course-preview">
+                <h6>{{ annonce.TypeEntreprise }}</h6>
+                <h2>{{ annonce.prixDemander }}</h2>
+                <a href="#">{{ annonce.numero }} <i class="fas fa-chevron-right"></i></a>
             </div>
-            <div class="card_right">
-                <div class="img_container">
-                    <img src="https://cdn.dribbble.com/users/1568450/screenshots/5430738/work_2_dribbble-01_4x.png" alt="">
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">
+                        {{ annonce.prixDemander }}€
+                    </span>
                 </div>
-                <div class="play_btn">
-                    <a href="https://www.imdb.com/title/tt4912910/" target="_blank">
-                        <i class="fas fa-play-circle"></i>
-                    </a>
-                </div>
+                <h6>{{ annonce.Contact }}</h6>
+                <h2>{{ annonce.description }}</h2>
+                <button class="btn">Continue</button>
             </div>
         </div>
     </div>
     {% endfor %}
-
     {% endblock %}
