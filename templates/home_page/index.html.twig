@@ -11,8 +11,43 @@
 <div class="example-wrapper">
     <h1>Publier votre annonce:✅</h1>
         {{ form_start(form) }}
-            {{ form_widget(form) }}<br>
+            {{ form_widget(form) }}
                  <button class="btn">{{ button_label|default('Save') }}</button>
         {{ form_end(form) }}
 </div>
+<style>
+    .example-wrapper {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        font: 18px/1.5 sans-serif;
+    }
+
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 6px;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>voici les annonces</h1>
+    {% for annonces in annonce %}
+    <div class="courses-container">
+        <div class="course">
+            <div class="course-preview">
+                <h6>{{ annonce.TypeEntreprise }}</h6>
+                <h2>{{ annonce.prixDemander }}€</h2>
+                <a href="#">{{ annonce.numero }} <i class="fas fa-phone-volume"></i></a>
+            </div>
+            <div class="course-info">
+                <div class="progress-container">
+                    <div class="progress"></div>
+                </div>
+                <h6>{{ annonce.Contact }}</h6>
+                <h2>{{ annonce.description }}</h2>
+                <button class="btn">Continue</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 {% endblock %}

@@ -14,7 +14,7 @@ class AnnoncesListeController extends AbstractController
     {
         return $this->render('annonces_liste/index.html.twig', [
             'controller_name' => 'AnnoncesListeController',
-            'annonces' => $AnnoncesRepository->findAll(),
+           'annonces' => $AnnoncesRepository->findAll(),
         ]);
     }
 }
