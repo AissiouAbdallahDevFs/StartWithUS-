@@ -24,7 +24,7 @@ class HomePageController extends AbstractController
             $entityManager->persist($annonce);
             $entityManager->flush();
 
-            return $this->redirectToRoute('/annonces');
+            return $this->redirectToRoute('annonces');
         }
 
         return $this->render('home_page/index.html.twig', [
